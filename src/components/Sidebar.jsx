@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { signOut } from 'firebase/auth';
 import { firebaseAuth } from '../configs/firebase';
 import { useNavigate } from 'react-router-dom';
-import { FaHome, FaSearch, FaEnvelope, FaUser, FaCog, FaSignOutAlt , FaCompass, FaBars} from 'react-icons/fa';
+import { FaHome, FaSearch, FaEnvelope, FaUser, FaCog, FaSignOutAlt , FaCompass, FaBars, FaSave, FaBookmark} from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
 import logo from '../assets/logo.png';
 
@@ -80,7 +80,7 @@ function Sidebar({ isOpen, onClose }) {
               <li>
                 <NavLink
                 to={'/profile'}
-                  onClick={() => {}}
+                  onClick={onClose}
                   className={`flex items-center px-4 py-3 rounded-md transition-colors duration-200  ${
                     isActive('/profile')
                       ? 'bg-indigo-100 text-indigo-600 dark:bg-gray-700 dark:text-indigo-300'
@@ -103,13 +103,14 @@ function Sidebar({ isOpen, onClose }) {
              <div className="ml-3">More</div>
             </div>
 
-            <div className={`absolute bottom-16 left-4 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-600 shadow-lg rounded-lg w-48 text-gray-700 dark:text-gray-200 ${isProfileMenuOpen ? '' : 'hidden'}`}>
+            <div className={`absolute bottom-16 left-4 bg-white border transition-all duration-300 ease-in  border-gray-200 dark:bg-gray-800 dark:border-gray-600 shadow-lg rounded-lg w-48 text-gray-700 dark:text-gray-200 ${isProfileMenuOpen ? '' : 'hidden'}`}>
               <ul>
+              
                 <li onClick={() => setProfileMenuOpen(!isProfileMenuOpen)} >
-                  <Link to="/profile" className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">Profile</Link>
+                  <Link to="/saved" className='flex items-center  px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700' ><FaBookmark className="mr-2" /> Saved</Link>
                 </li>
                 <li onClick={() => setProfileMenuOpen(!isProfileMenuOpen)} >
-                  <Link to="/settings" className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</Link>
+                  <Link to="/settings" className="flex items-center  px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"><FaCog className="mr-2" /> Settings</Link>
                 </li>
                 <li>
                   <button onClick={handleSignOut} className="flex items-center w-full px-4 py-3 text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700">

@@ -3,12 +3,11 @@ import { firestore } from "../configs/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
 const initialState = {
-  uid: null,  
-  userData: null,  
+  uid: null,
+  userData: null,
   loading: true,
   error: null,
 };
-
 // 🔹 Firestore se User Data Fetch Karne Wala Thunk
 export const fetchUserData = createAsyncThunk(
   "user/fetchUserData",
@@ -47,17 +46,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUid: (state, action) => {
-      state.user = { ...state.user, uid: action.payload };    },
-    
-    clearUser: (state) => {
-      return { ...initialState };
+      state.uid = action.payload; // Set the uid
     },
+    clearUser: () => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUserData.pending, (state) => {
-        state.loading = true;
-      })
+     
       .addCase(fetchUserData.fulfilled, (state, action) => {
         state.userData = { ...state.userData, ...action.payload }; 
         state.loading = false;

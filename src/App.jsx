@@ -6,27 +6,17 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Landing from "./pages/Landing";
-import SignIn from "./pages/SignIn";
-import Signup from "./pages/Signup";
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import Settings from "./pages/Settings";
+import {Landing,Home,Explore,NotFound,Profile,ProfileUpdate,Search,Settings,SignIn,SignUp} from "./pages";
 import Sidebar from "./components/Sidebar";
 import MobileHeader from "./components/MobileHeader";
-import Profile from "./pages/Profile";
 import PublicHeader from "./components/PublicHeader";
 import Footer from "./components/Footer";
-import Search from "./pages/Search";
 import { authCheck } from "./configs/authCheck";
-import Explore from "./pages/Explore";
-import LoadingScreen from "./components/lodgings/LoadingScreen";
 
 function App() {
   const user = authCheck(); // 🔹 Firebase auth check function
   const theme = useSelector((state) => state.theme.theme); // 🔹 Redux theme state
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 🔹 Sidebar state
-  const { loading } = useSelector((state) => state.user); // 🔹 Redux user loading state
 
   // ✅ Dark mode toggle effect
   useEffect(() => {
@@ -66,6 +56,7 @@ function App() {
                     <Route path="/signin" element={<Navigate to="/" />} />
                     <Route path="/signup" element={<Navigate to="/" />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile/update" element={<ProfileUpdate />} />
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/explore" element={<Explore />} />
@@ -85,7 +76,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Landing />} />
                   <Route path="/signin" element={<SignIn />} />
-                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/signup" element={<SignUp />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </div>
