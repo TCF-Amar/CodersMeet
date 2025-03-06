@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Press+Start+2P&family=VT323&display=swap");
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color: #848484;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
